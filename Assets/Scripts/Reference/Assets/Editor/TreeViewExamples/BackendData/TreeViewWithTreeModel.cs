@@ -17,6 +17,11 @@ namespace UnityEditor.TreeViewExamples
 		{
 			this.data = data;
 		}
+		
+		public TreeViewItem(T data) : base(data.id, data.depth, data.name)
+		{
+			this.data = data;
+		}
 	}
 
 	internal class TreeViewWithTreeModel<T> : TreeView where T : TreeElement
@@ -88,7 +93,7 @@ namespace UnityEditor.TreeViewExamples
 		{
 			foreach(T child in parent.children)
 			{
-				var item = new TreeViewItem<T>(child.id, depth, child.name, child);
+				var item = new TreeViewItem<T>( child);
 				newRows.Add(item);
 
 				if(child.hasChildren)
